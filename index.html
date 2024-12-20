@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Time to open presents! Choose which to give out next with this spinner!">
+    <meta name="author" content="Bruno Albertoni">
+    <meta name="keywords" content="Spinner, Christmas, Present, Selector">
+    <title>Present Spinner</title>
+    
+    <!-- Favicon (Firefox present icon) -->
+    <link rel="icon" href="https://api.iconify.design/fxemoji/present.svg" type="image/x-icon">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- External Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lavishly Yours' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Borel' rel='stylesheet'>
+
+    <!-- Open Graph / Social Media Metadata -->
+    <meta property="og:title" content="Present Spinner">
+    <meta property="og:description" content="Your website description here">
+    <meta property="og:image" content="path/to/image.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+</head>
+<body id="body" class="sky">
+    <div class="background"></div>
+    <main id="main">
+        <div class="settings" id="settings">
+            <h1>Settings</h1>
+            <button class="button close-button" onclick="closeSettings()"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg></button>
+
+            <div class="controls">
+                <button class="button" onclick="openFullscreen()"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4h4v4m-6 2l6-6M8 20H4v-4m0 4l6-6m6 6h4v-4m-6-2l6 6M8 4H4v4m0-4l6 6"/></svg> Fullscreen</button>
+                <button class="button" onclick="resetWheel()"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg> Reset Wheel</button>
+            </div>
+
+            <div class="people">
+                <!-- people added through js -->
+            </div>
+
+            <button class="button add-new" onclick="addNewPerson(null, null, true)"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M4 6V5a1 1 0 0 1 1-1h1m5 0h2m5 0h1a1 1 0 0 1 1 1v1m0 5v2m0 5v1a1 1 0 0 1-1 1h-1m-5 0h-2m-5 0H5a1 1 0 0 1-1-1v-1m0-5v-2m0-5"/></svg> Add New Person</button>
+            
+        </div>
+
+        <div class="wheel-container">
+            <div class="wheel" id="wheel" onclick="spinTheWheel()">
+                <!-- slices added through js -->
+            </div>
+            <div class="wheel-message" id="wheelMessage" onclick="closeMessage()">
+                Hello
+            </div>
+            <div class="arrow"></div>
+            <div class="shine"></div>
+        </div>
+    </main>
+
+    <footer>
+        <button onclick="openSettings()" class="button">Settings</button>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+</body>
+</html>
