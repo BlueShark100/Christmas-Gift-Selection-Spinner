@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSlices();
 });
 
+var lastRotation = 0; //store where the wheel landed last so we can set the animation to start there. from 0-1
+
 async function spinTheWheel() {
     const chosenSlice = getWeightedRandom();
 
@@ -46,8 +48,7 @@ async function spinTheWheel() {
     document.getElementById("wheelMessage").innerHTML = chosenSlice.label;
 
     const wheel = document.getElementById("wheel");
-    const landingRotation = ((slices.indexOf(chosenSlice) - 0.5 + Math.random()) / (slices.length * -1)) - 0.25; //(((12 - 0.5 + 0.5) /-13) - 0.25)
-    //transform: rotate(calc(2520deg + var(--endRot))); /* 7 full spins */
+    const landingRotation = ((slices.indexOf(chosenSlice) - 0.5 + Math.random()) / (slices.length * -1)) - 0.25; 
 
     // Remove any previously applied animation and set css variables
     wheel.style.animation = 'none';
@@ -91,12 +92,21 @@ function updateList() {
 }
 
 function updateSlices() {
-    document.getElementById('wheel').innerHTML = ''; //reset the slices to add new ones
+    const wheelDiv = document.getElementById("wheel")
+    wheelDiv.innerHTML = ''; //reset the slices to add new ones
 
     if (slices.length == 0) {
-        document.getElementById('wheel').innerHTML = 'Theres nobody on the wheel!';
+        wheelDiv.style.animation = 'none'; //reset the rotation by removing the animation
+        lastRotation = 0; // make sure it spins from zero
+        void wheelDiv.offsetWidth; // This forces a reflow somehow
+
+        wheelDiv.innerHTML = 'Theres nobody on the wheel!';
     } else if (slices.length == 1) {
-        document.getElementById('wheel').innerHTML = `Theres only ${slices[0].label} on the wheel!`;
+        wheelDiv.style.animation = 'none'; //reset the rotation by removing the animation
+        lastRotation = 0; // make sure it spins from zero
+        void wheelDiv.offsetWidth; // This forces a reflow somehow
+
+        wheelDiv.innerHTML = `Theres only ${slices[0].label} on the wheel!`;
     } else {
         const totalSlices = slices.length;
         const angle = 360 / totalSlices;
@@ -136,8 +146,6 @@ function closeSettings() {
     void settings.offsetWidth; // This forces a reflow somehow
     if (settingsOpen) {settings.style.transform = 'translate(-50%, 70%)';};
 }
-
-var lastRotation = 0; //store where the wheel landed last so we can set the animation to start there. from 0-1
 
 function closeMessage() {
     const wheelMessage = document.getElementById("wheelMessage");
@@ -318,9 +326,9 @@ function getWeightedRandom() {
     slices.forEach((slice) => {
         let numGifts = slice.gifts;
         if (slice === chosenLast[0]) {
-            numGifts *= 0.3;
+            numGifts *= 0.35; // last person selected
         } else if (slice === chosenLast[1]) {
-            numGifts *= 0.6;
+            numGifts *= 0.6; // secont to last person selected
         }
         weights.push(numGifts);
     });
