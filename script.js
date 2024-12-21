@@ -190,7 +190,7 @@ function updatePersonName(pNameInput) {
 
 function updatePersonGiftNumber(pGiftNumInput) {
     const personDiv = pGiftNumInput.parentElement;
-    const numGifts = pGiftNumInput.value;
+    const numGifts = Number(pGiftNumInput.value);
 
     let IDToFind = personDiv.getAttribute('id');
 
@@ -209,13 +209,17 @@ function updatePersonGiftNumber(pGiftNumInput) {
     updateSlices();
 }
 
+var idStartNum = 5;
+
 function addNewPerson(number, color, fromButton, numGifts, name) {
     if (!name) {
         if (!number) {
-            number = slices.length + 1;
+            idStartNum++;
+            number = idStartNum;
+
         }
 
-        name = "Person " + number;
+        name = "Person " + (slices.length + 1);
     }
 
     if (!color) {
@@ -436,3 +440,4 @@ function getWeightedRandom() {
   
     masthead.appendChild(canvas);
   })();
+  
