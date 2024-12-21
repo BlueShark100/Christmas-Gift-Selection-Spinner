@@ -52,6 +52,7 @@ async function spinTheWheel() {
 
     // Remove any previously applied animation and set css variables
     wheel.style.animation = 'none';
+    wheel.style.pointerEvents = 'none'; // dont start another while its spinning cause it gets messy
     document.documentElement.style.setProperty("--startRot", `${lastRotation * 360}deg`);
     document.documentElement.style.setProperty("--endRot", `${landingRotation * 360}deg`);
 
@@ -79,6 +80,9 @@ async function spinTheWheel() {
         slices.splice(slices.indexOf(chosenSlice), 1) //remove from the list
         updateSlices();
     }
+
+    wheel.style.pointerEvents = 'all'; // ok you can click now :)
+
     updateList();
 }
 
