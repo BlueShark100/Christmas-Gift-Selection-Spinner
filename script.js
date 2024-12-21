@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function spinTheWheel() {
     const chosenSlice = getWeightedRandom();
 
-    if (chosenLast.length > 2) {chosenLast.pop();}
+    if (chosenLast.length > 1) {chosenLast.pop();}
     chosenLast.unshift(chosenSlice);
 
     console.log(slices.indexOf(chosenSlice) + " | length: " + slices.length + " | name: " + chosenSlice.label);
@@ -46,8 +46,8 @@ async function spinTheWheel() {
     document.getElementById("wheelMessage").innerHTML = chosenSlice.label;
 
     const wheel = document.getElementById("wheel");
-    const landingRotation = (slices.indexOf(chosenSlice) + 0.5 + Math.random()) / (slices.length * -1); //(3 - 0.5) + 0.2)/ -4
-    console.log(landingRotation * 4);
+    const landingRotation = ((slices.indexOf(chosenSlice) - 0.5 + Math.random()) / (slices.length * -1)) - 0.25; //(((12 - 0.5 + 0.5) /-13) - 0.25)
+    //transform: rotate(calc(2520deg + var(--endRot))); /* 7 full spins */
 
     // Remove any previously applied animation and set css variables
     wheel.style.animation = 'none';
@@ -318,9 +318,9 @@ function getWeightedRandom() {
     slices.forEach((slice) => {
         let numGifts = slice.gifts;
         if (slice === chosenLast[0]) {
-            numGifts *= 0.4;
+            numGifts *= 0.3;
         } else if (slice === chosenLast[1]) {
-            numGifts *= 0.7;
+            numGifts *= 0.6;
         }
         weights.push(numGifts);
     });
@@ -351,14 +351,14 @@ function getWeightedRandom() {
     var masthead = document.querySelector('.sky');
     var canvas = document.createElement('canvas');
     var ctx = canvas.getContext('2d');
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    var width = window.outerWidth;
+    var height = window.outerHeight;
     var i = 0;
     var active = false;
   
     function onResize() {
-      var width = window.innerWidth;
-      var height = window.innerHeight;
+      var width = window.outerWidth;
+      var height = window.outerHeight;
       canvas.width = width;
       canvas.height = height;
       ctx.fillStyle = '#FFF';
