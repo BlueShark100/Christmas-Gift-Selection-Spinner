@@ -263,7 +263,7 @@ function addNewPerson(number, color, fromButton, numGifts, name) {
     if (fromButton) {
         // Trigger whatever a reflow is
         void newPerson.offsetWidth; // This forces a reflow somehow
-        newPerson.style.animation = 'deletePinch 0.2s reverse';
+        newPerson.style.animation = 'deletePinch 0.2s ease-in reverse';
     };
 
     // Update the input fields' IDs and placeholders
@@ -293,7 +293,7 @@ async function deletePerson(deleteButton) {
 
     // Trigger whatever a reflow is
     void personDiv.offsetWidth; // This forces a reflow somehow
-    personDiv.style.animation = 'deletePinch 0.2s forwards';
+    personDiv.style.animation = 'deletePinch 0.2s ease-out forwards';
 
     await new Promise(resolve => setTimeout(resolve, 200)); //wait 0.5s
 
