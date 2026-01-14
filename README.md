@@ -10,7 +10,3 @@ The likelyhood of someone being selected depends on the amount of presents they 
 Once a person has been chosen, on the next spin, their original chances are reduced by 65%! This way we aren't repeating the same person over and over. But there's still a chance! The person chosen two wheel spins ago has their chances reduced by only 30% to avoid too much ping pong from two people with lots of gifts.
 
 Check out the live version of this website running on [this website](https://christmass-selection-spinner.netlify.app).
-
-## Notice for Mobile
-I'm working on making it better for mobile use. The settings menu is a little pinched and its possible that you can't delete people because of it.
-
